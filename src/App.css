@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-logo {
@@ -30,4 +31,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.quote-card {
+  width: 70%;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 8px;
+  text-align: center;
 }

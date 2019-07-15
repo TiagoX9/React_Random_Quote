@@ -7,9 +7,6 @@ list.push({ index: 1, quote: 'first quote', author: 'first author' });
 list.push({ index: 2, quote: 'second quote', author: 'second author' });
 list.push({ index: 3, quote: 'third quote', author: 'third author' });
 
-
-
-
 export default class HomeComponent extends Component {
     constructor(props) {
         super(props);
