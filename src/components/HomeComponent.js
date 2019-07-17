@@ -36,7 +36,7 @@ export default class HomeComponent extends Component {
         this.setState(() => {
             list.push({
                 index: list.length + 1,
-                quote: quote.newQuote,
+                quote: quote.quote,
                 author: quote.author
             });
             return {
