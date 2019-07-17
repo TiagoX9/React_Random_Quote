@@ -1,3 +1,10 @@
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  background: #222;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -34,9 +41,15 @@
 }
 
 .quote-card {
-  width: 70%;
-  display: flex;
   margin: 0 auto;
-  margin-top: 8px;
-  text-align: center;
+  width: 70%;
+  padding: 1rem;
+  background: linear-gradient(to right, red, purple);
+  padding: 3px;
+}
+
+.card {
+  background: #222;
+  color: white;
+  padding: 2rem;
 }

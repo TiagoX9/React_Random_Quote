@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import QuoteForm from './QuoteForm';
 import QuoteItem from './QuoteItem';
+import { Button } from 'reactstrap';
 
 var list = []
 list.push({ index: 1, quote: 'first quote', author: 'first author' });
@@ -12,6 +13,7 @@ export default class HomeComponent extends Component {
         super(props);
 
         this.addQuote = this.addQuote.bind(this);
+        this.randomizeQuote = this.randomizeQuote.bind(this);
 
         this.state = {
             list: [{ index: 1, quote: 'first quote', author: 'first author' }, { index: 2, quote: 'second quote', author: 'second author' }, { index: 3, quote: 'third quote', author: 'third author' }],
@@ -20,6 +22,10 @@ export default class HomeComponent extends Component {
     }
 
     componentWillMount() {
+        this.randomizeQuote();
+    }
+
+    randomizeQuote() {
         this.setState({
             selectedQuote: this.state.list[Math.floor(Math.random() * list.length)],
         })
@@ -44,13 +50,12 @@ export default class HomeComponent extends Component {
     render() {
         return (
             <div>
-
                 <div key={this.state.list.index}>
                     <QuoteItem quotes={this.state.selectedQuote.quote} author={this.state.selectedQuote.author} />
                 </div>
-
-
-
+                <Button onClick={this.randomizeQuote} className="bg-primary">
+                    Next Quote
+                        </Button>
                 <QuoteForm addQuote={this.addQuote} />
             </div>
         )

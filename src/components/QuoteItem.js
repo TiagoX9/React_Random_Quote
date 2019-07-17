@@ -4,10 +4,13 @@ import '../App.css';
 
 const QuoteItem = (item => {
     return (
-        <Card body inverse className="quote-card" color="danger" key={item.index}>
-            <CardTitle>{item.quotes}</CardTitle>
-            <CardText>{item.author}</CardText>
-        </Card>
+        <div className="quote-card">
+            <Card body className="card" key={item.index}>
+                <CardTitle>{item.quotes}</CardTitle>
+                <CardText>{item.author}</CardText>
+            </Card>
+        </div>
+
     )
 })
 
