@@ -6,8 +6,8 @@ const QuoteItem = (item => {
     return (
         <div className="quote-card">
             <Card body className="card" key={item.index}>
-                <CardTitle>{item.quotes}</CardTitle>
-                <CardText>{item.author}</CardText>
+                <CardTitle className="quote">{item.quotes}</CardTitle>
+                <CardText className="author">-- {item.author}</CardText>
             </Card>
         </div>
 

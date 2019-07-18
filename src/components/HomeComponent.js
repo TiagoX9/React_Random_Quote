@@ -46,6 +46,7 @@ export default class HomeComponent extends Component {
         })
 
         console.log(this.state.list.length)
+        console.log(quote);
     }
     render() {
         return (
@@ -53,10 +54,17 @@ export default class HomeComponent extends Component {
                 <div key={this.state.list.index}>
                     <QuoteItem quotes={this.state.selectedQuote.quote} author={this.state.selectedQuote.author} />
                 </div>
-                <Button onClick={this.randomizeQuote} className="bg-primary">
-                    Next Quote
-                        </Button>
-                <QuoteForm addQuote={this.addQuote} />
+                <div className="buttons">
+                <div className="margin-button">
+                <Button  onClick={this.randomizeQuote} className="bg-primary">
+                <span class="fa fa-refresh fa-lg margin-button"></span>
+                Next Quote
+            </Button>
+                </div>
+               <div className="margin-button">
+               <QuoteForm  addQuote={this.addQuote} />
+               </div>
+                </div>  
             </div>
         )
     }
