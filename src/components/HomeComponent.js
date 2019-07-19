@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import QuoteForm from './QuoteForm';
 import QuoteItem from './QuoteItem';
+import Footer from './Footer';
 import { Button } from 'reactstrap';
 
 var list = []
@@ -57,15 +58,17 @@ export default class HomeComponent extends Component {
                 <div className="buttons">
                 <div className="margin-button">
                 <Button  onClick={this.randomizeQuote} className="bg-primary">
-                <span class="fa fa-refresh fa-lg margin-button"></span>
+                <span className="fa fa-refresh fa-lg margin-button"></span>
                 Next Quote
-            </Button>
+                </Button>
                 </div>
                <div className="margin-button">
                <QuoteForm  addQuote={this.addQuote} />
                </div>
-                </div>  
+                </div>
+                <Footer />  
             </div>
+            
         )
     }
 }
