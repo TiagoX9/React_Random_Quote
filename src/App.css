@@ -1,5 +1,18 @@
+body {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10%;
+  display: flex;
+  background-color: #fef7f7;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .App-logo {
@@ -30,4 +43,84 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.quote-card {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  padding: 3px;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  padding: 2rem;
+  border: none;
+  background-color: #fef7f7;
+}
+
+.quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 80px;
+  border-bottom: 1px solid black;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 20px;
+  text-align: flex-end;
+  font-style: italic;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.margin-button {
+  margin-right: 10px;
+}
+
+.footer {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  background-color: #404245;
+  width: 100%;
+  height: 20%;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.social-footer {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  left: 0;
+}
+
+.social-icons {
+  float: left;
+  margin: 8px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
