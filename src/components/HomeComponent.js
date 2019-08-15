@@ -3,11 +3,9 @@ import QuoteForm from './QuoteForm';
 import QuoteItem from './QuoteItem';
 import Footer from './Footer';
 import { Button } from 'reactstrap';
+import firebase from '../firebase/firebase';
 
-var list = []
-list.push({ index: 1, quote: 'first quote', author: 'first author' });
-list.push({ index: 2, quote: 'second quote', author: 'second author' });
-list.push({ index: 3, quote: 'third quote', author: 'third author' });
+const list = firebase.database().ref('list/1/quote');
 
 export default class HomeComponent extends Component {
     constructor(props) {
@@ -17,19 +15,40 @@ export default class HomeComponent extends Component {
         this.randomizeQuote = this.randomizeQuote.bind(this);
 
         this.state = {
-            list: [{ index: 1, quote: 'first quote', author: 'first author' }, { index: 2, quote: 'second quote', author: 'second author' }, { index: 3, quote: 'third quote', author: 'third author' }],
+            list: list,
             selectedQuote: ''
         }
     }
 
     componentWillMount() {
-        this.randomizeQuote();
+        const listRef = firebase.database().ref('list');
+        listRef.on('value', (snapshot) => {
+            let lists = snapshot.val();
+            let newState = [];
+            for (let list in lists) {
+                newState.push({
+                    index: list,
+                    quote: lists[list].quote,
+                    author: lists[list].author
+                });
+            }
+            const random = newState[Math.floor(Math.random() * newState.length)];
+        this.setState({
+            list: newState,
+            selectedQuote: random
+         })
+        })
+        
     }
 
+
     randomizeQuote() {
+        const {list} = this.state;
+        const random = list[Math.floor(Math.random() * list.length)];
         this.setState({
-            selectedQuote: this.state.list[Math.floor(Math.random() * list.length)],
+            selectedQuote: random,
         })
+        console.log(this.state.list.quote);
     }
 
 

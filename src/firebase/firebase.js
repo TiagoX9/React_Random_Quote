@@ -1,14 +1,15 @@
-import { config } from './config';
 import firebase from 'firebase';
+
+const config = {
+  apiKey: "AIzaSyBrXEQXj6Ea-txhxE7Rqoc9FkKbcvhBOQQ",
+  authDomain: "random-quote-generator-a39e6.firebaseapp.com",
+  databaseURL: "https://random-quote-generator-a39e6.firebaseio.com",
+  projectId: "random-quote-generator-a39e6",
+  storageBucket: "",
+  messagingSenderId: "779183954873",
+  appId: "1:779183954873:web:0e37b3fe0b34cd93"
+};
 
 firebase.initializeApp(config);
 
-export const auth = firebase.auth();
-
-export const fireauth = firebase.auth;
-
-const settings = { timestampsInSnapshots: true };
-firebase.firestore().settings(settings);
-export const firestore = firebase.firestore();
-
-export const firebasestore = firebase.firestore;
+export default firebase;
