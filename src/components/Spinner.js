@@ -1,12 +1,18 @@
 import React from 'react';
+import { Spinner } from 'reactstrap';
 import '../App.css';
 
-const Spinner = () => {
+const SpinnerComponent = () => {
   return (
     <div className="spinner">
-      <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        <Spinner type="grow" color="primary" />
+        <Spinner type="grow" color="secondary" />
+        <Spinner type="grow" color="success" />
+        <Spinner type="grow" color="danger" />
+        <Spinner type="grow" color="warning" />
+        <Spinner type="grow" color="info" />
     </div>
   )
 }
 
-export default Spinner;
+export default SpinnerComponent;

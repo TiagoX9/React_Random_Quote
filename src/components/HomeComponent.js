@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import QuoteForm from './QuoteForm';
 import QuoteItem from './QuoteItem';
 import Footer from './Footer';
-import { Button } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import firebase from '../firebase/firebase';
-import Spinner from './Spinner';
+import SpinnerComponent from './Spinner';
 
 const list = firebase.database().ref('list/1/quote');
 
@@ -71,12 +71,14 @@ export default class HomeComponent extends Component {
         const {selectedQuote} = this.state;
         let quoteContent;
         if(selectedQuote === '') {
-            quoteContent = <Spinner />
+            quoteContent = <SpinnerComponent />
         } else {
-            quoteContent = <div>
+            quoteContent = <Container>
+                <Row>
             <div key={this.state.list.index}>
             <QuoteItem quotes={this.state.selectedQuote.quote} author={this.state.selectedQuote.author} />
         </div>
+        </Row>
          <div className="buttons">
          <div className="margin-button">
          <Button  onClick={this.randomizeQuote} className="bg-primary">
@@ -88,12 +90,22 @@ export default class HomeComponent extends Component {
         <QuoteForm  addQuote={this.addQuote} />
         </div>
          </div>
-         </div> 
+         </Container> 
         }
         return (
             <div>
-                {quoteContent}
-                <Footer />  
+                <Container>
+                    <Row>
+                        <Col>
+                        {quoteContent}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                        <Footer />  
+                        </Col>
+                    </Row>
+                </Container>
             </div>
             
         )
