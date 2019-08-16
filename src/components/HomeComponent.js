@@ -4,6 +4,7 @@ import QuoteItem from './QuoteItem';
 import Footer from './Footer';
 import { Button } from 'reactstrap';
 import firebase from '../firebase/firebase';
+import Spinner from './Spinner';
 
 const list = firebase.database().ref('list/1/quote');
 
@@ -20,7 +21,7 @@ export default class HomeComponent extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const listRef = firebase.database().ref('list');
         listRef.on('value', (snapshot) => {
             let lists = snapshot.val();
@@ -52,39 +53,44 @@ export default class HomeComponent extends Component {
     }
 
 
-    addQuote(quote) {
-        this.setState(() => {
-            list.push({
-                index: list.length + 1,
-                quote: quote.quote,
-                author: quote.author
-            });
-            return {
-                list,
-                selectedQuote: this.state.list[Math.floor(Math.random() * list.length)]
+    addQuote(quote, postId) {
+        postId = this.state.list.length;
+        const listRef = firebase.database().ref('list/' + postId);
+        listRef.on('value', () => {
+                listRef.set({
+                        quote: quote.quote,
+                        author: quote.author      
+                })
             }
-        })
-
-        console.log(this.state.list.length)
-        console.log(quote);
+         )
+         this.randomizeQuote();
     }
     render() {
+        const {selectedQuote} = this.state;
+        let quoteContent;
+        if(selectedQuote === '') {
+            quoteContent = <Spinner />
+        } else {
+            quoteContent = <div>
+            <div key={this.state.list.index}>
+            <QuoteItem quotes={this.state.selectedQuote.quote} author={this.state.selectedQuote.author} />
+        </div>
+         <div className="buttons">
+         <div className="margin-button">
+         <Button  onClick={this.randomizeQuote} className="bg-primary">
+         <span className="fa fa-refresh fa-lg margin-button"></span>
+         Next Quote
+         </Button>
+         </div>
+        <div className="margin-button">
+        <QuoteForm  addQuote={this.addQuote} />
+        </div>
+         </div>
+         </div> 
+        }
         return (
             <div>
-                <div key={this.state.list.index}>
-                    <QuoteItem quotes={this.state.selectedQuote.quote} author={this.state.selectedQuote.author} />
-                </div>
-                <div className="buttons">
-                <div className="margin-button">
-                <Button  onClick={this.randomizeQuote} className="bg-primary">
-                <span className="fa fa-refresh fa-lg margin-button"></span>
-                Next Quote
-                </Button>
-                </div>
-               <div className="margin-button">
-               <QuoteForm  addQuote={this.addQuote} />
-               </div>
-                </div>
+                {quoteContent}
                 <Footer />  
             </div>
             

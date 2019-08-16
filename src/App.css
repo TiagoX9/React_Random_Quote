@@ -124,3 +124,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.spinner {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 42px;
+}
