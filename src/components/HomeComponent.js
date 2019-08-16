@@ -21,7 +21,7 @@ export default class HomeComponent extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const listRef = firebase.database().ref('list');
         listRef.on('value', (snapshot) => {
             let lists = snapshot.val();
@@ -49,13 +49,14 @@ export default class HomeComponent extends Component {
         this.setState({
             selectedQuote: random,
         })
-        console.log(this.state.list.quote);
     }
 
 
     addQuote(quote, postId) {
-        postId = this.state.list.length;
+        const {list} = this.state;
+        postId = list.length;
         const listRef = firebase.database().ref('list/' + postId);
+        
         listRef.on('value', () => {
                 listRef.set({
                         quote: quote.quote,
@@ -65,6 +66,7 @@ export default class HomeComponent extends Component {
          )
          this.randomizeQuote();
     }
+
     render() {
         const {selectedQuote} = this.state;
         let quoteContent;

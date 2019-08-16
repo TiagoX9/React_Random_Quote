@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {
   Container, FormGroup, Input, Form, Label, FormFeedback,
-  Modal, ModalHeader, ModalBody, Button, Row, Col
+  Modal, ModalHeader, ModalBody, Button, Col
 } from 'reactstrap';
 
 class QuoteForm extends Component {
@@ -92,7 +92,6 @@ class QuoteForm extends Component {
     })
 
     this.props.addQuote(this.state);
-    console.log(this.state);
     this.formReset();
     this.toggleModal();
     alert('Quote submitted successfuly!')
@@ -123,10 +122,10 @@ class QuoteForm extends Component {
                       id="quote"
                       placeholder="Add new quote"
                     />
-                    <FormFeedback valid>
+                    <FormFeedback valid={true}>
                       Looks Good!
                           </FormFeedback>
-                    <FormFeedback invalid>
+                    <FormFeedback invalid={true}>
                       Quote should be at least 5 characters long.
                           </FormFeedback>
                   </FormGroup>
